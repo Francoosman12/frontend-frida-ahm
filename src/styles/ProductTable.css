@@ -1,0 +1,232 @@
+/* Estilos generales */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f7fafc; /* Fondo claro */
+  color: #333; /* Texto oscuro para contraste */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Contenedor principal */
+div {
+
+  width: 100%;
+}
+
+/* Estilo de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff; /* Fondo blanco para la tabla */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+ /* Para evitar el desbordamiento de contenido */
+  /* Hace que la tabla sea desplazable horizontalmente */
+}
+
+th,
+td {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 14px;
+  color: #4a5568; /* Texto oscuro pero no negro */
+}
+
+select {
+  color: black;
+}
+
+th {
+  background-color: #edf2f7; /* Color de fondo de los encabezados */
+  color: #2d3748; /* Texto oscuro para los encabezados */
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f7fafc; /* Filas alternadas con un tono más claro */
+}
+
+tr:hover {
+  background-color: #f1f5f9; /* Resaltar fila al pasar el mouse */
+}
+
+/* Estilos para botones */
+button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Botón de Editar */
+button.text-blue-500 {
+  background-color: #4299e1;
+  color: white;
+}
+
+button.text-blue-500:hover {
+  background-color: #3182ce;
+}
+
+/* Botón de Eliminar */
+button.text-red-500 {
+  background-color: #f56565;
+  color: white;
+}
+
+button.text-red-500:hover {
+  background-color: #e53e3e;
+}
+
+/* Estilo para el filtro de búsqueda */
+input[type="text"] {
+  padding: 10px 12px;
+  border-radius: 5px;
+  border: 1px solid #d2d6dc; /* Borde suave */
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 14px;
+  background-color: #f9fafb; /* Fondo suave para el input */
+  color: black;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #63b3ed; /* Borde azul claro al enfocar */
+}
+
+/* Estilos para el modal */
+.fixed {
+  position: fixed;
+}
+
+.bg-gray-500 {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro y semitransparente */
+}
+
+.bg-white {
+  background-color: #ffffff; /* Fondo blanco del modal */
+}
+
+button.absolute {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #e53e3e;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+button.absolute:hover {
+  background-color: #c53030;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form div {
+  margin-bottom: 12px;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #4a5568;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  padding: 10px 12px;
+  border-radius: 5px;
+  border: 1px solid #d2d6dc;
+  font-size: 14px;
+  background-color: #f9fafb;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: none;
+  border-color: #63b3ed;
+}
+
+button[type="submit"] {
+  background-color: #48bb78;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+button[type="submit"]:hover {
+  background-color: #38a169;
+}
+
+button[type="button"] {
+  background-color: #edf2f7;
+  color: #4a5568;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+button[type="button"]:hover {
+  background-color: #e2e8f0;
+}
+
+/* Media Queries para dispositivos pequeños */
+@media (max-width: 768px) {
+  /* Reducción del tamaño de la fuente y padding en la tabla */
+  table {
+    font-size: 12px; /* Reducir tamaño de fuente */
+  }
+
+  th, td {
+    padding: 8px 10px; /* Reducir padding */
+  }
+
+  /* Hacer la tabla desplazable horizontalmente */
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hacer que los botones sean más pequeños en dispositivos pequeños */
+  button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Asegurar que el filtro de búsqueda sea también responsivo */
+  input[type="text"] {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Mejorar la visualización de la tabla en pantallas muy pequeñas */
+  table {
+    font-size: 10px;
+  }
+
+  th, td {
+    padding: 6px 8px;
+  }
+
+  /* Reducir aún más el tamaño de los botones */
+  button {
+    padding: 5px 8px;
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,71 @@
+/* ProductoInfo.css */
+
+/* Contenedor principal para la información del producto */
+.producto-info {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 300px; /* Reducimos el ancho máximo para que ocupe menos espacio */
+    margin: 10px;
+    text-align: center;
+    flex: 1 0 300px; /* Hace que cada tarjeta ocupe un espacio flexible */
+    transition: transform 0.3s ease-in-out; /* Agrega una transición cuando se pasa el mouse */
+  }
+  
+  /* Redimensionar imagen */
+  .producto-info img {
+    max-width: 80%; /* Reducción del tamaño de la imagen */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease; /* Animación suave cuando se pasa el mouse */
+  }
+  
+  .producto-info img:hover {
+    transform: scale(1.05); /* Escala la imagen al pasar el mouse */
+  }
+  
+  .producto-info h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .producto-info p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  
+  .producto-info .precio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 15px;
+  }
+  
+  .boton-carrito {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .boton-carrito:hover {
+    background-color: #45a049;
+  }
+  
+  /* Agregar estilo para el contenedor del grid */
+  .productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajusta la cantidad de columnas según el espacio disponible */
+    gap: 20px; /* Espacio entre las tarjetas */
+    justify-items: center; /* Centra las tarjetas dentro del grid */
+    margin-top: 20px;
+  }
+  

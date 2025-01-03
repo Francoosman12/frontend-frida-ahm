@@ -1,0 +1,135 @@
+/* Contenedor general */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Encabezados */
+  h2, h3 {
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Formulario */
+  form {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  form div {
+    margin-bottom: 15px;
+  }
+  
+  form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  form select,
+  form input,
+  form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Mensaje de error */
+  .error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Tablas */
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Suaviza el desplazamiento en móviles */
+  }
+  
+  .tabs {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .tabs button {
+    padding: 10px 20px;
+    margin: 2px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    font-size: 16px;
+  }
+  
+  .tabs button:hover {
+    background-color: #ddd;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    word-wrap: break-word; /* Ajusta palabras largas */
+  }
+  
+  table th {
+    background-color: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Ajustes para pantallas pequeñas */
+  @media (max-width: 768px) {
+    table th, table td {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    table th, table td {
+      font-size: 10px;
+      padding: 5px;
+    }
+  }
+  

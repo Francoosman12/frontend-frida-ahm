@@ -1,0 +1,103 @@
+
+  /* Contenedor principal del formulario */
+  .product-form-container {
+    max-width: 700px;
+    margin: 20px auto; /* Centrado con margen */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  /* Título del formulario */
+  .product-form-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: center;
+    color: #2d3748;
+  }
+  
+  /* Espaciado entre campos */
+  .product-form-container .form-group {
+    margin-bottom: 16px;
+  }
+  
+  /* Etiquetas */
+  .product-form-container label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4a5568;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  /* Inputs y selects */
+  .product-form-container input[type="text"],
+  .product-form-container input[type="number"],
+  .product-form-container input[type="date"],
+  .product-form-container select,
+  .product-form-container textarea,
+  .product-form-container input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #4a5568;
+    background-color: #f7fafc;
+    box-sizing: border-box;
+  }
+  
+  .product-form-container input:focus,
+  .product-form-container select:focus,
+  .product-form-container textarea:focus {
+    outline: none;
+    border-color: #63b3ed; /* Borde azul al enfocar */
+    box-shadow: 0 0 4px rgba(99, 179, 237, 0.5);
+  }
+  
+  /* Textarea */
+  .product-form-container textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* Botón de envío */
+  .product-form-container button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #4299e1;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .product-form-container button[type="submit"]:hover {
+    background-color: #3182ce;
+  }
+  
+  /* Campos de archivo */
+  .product-form-container input[type="file"] {
+    padding: 5px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .product-form-container {
+      padding: 15px;
+    }
+  
+    .product-form-container h2 {
+      font-size: 1.25rem;
+    }
+  
+    .product-form-container button[type="submit"] {
+      font-size: 0.9rem;
+    }
+  }
+  

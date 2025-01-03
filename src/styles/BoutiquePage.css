@@ -1,0 +1,158 @@
+/* BoutiquePage.css */
+
+/* Contenedor principal de la página */
+.boutique-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+/* Contenedor del formulario de búsqueda */
+.formulario-container {
+    flex: 1;
+    max-width: 400px;
+    margin-right: 20px;
+}
+
+/* Contenedor de la información del producto */
+.producto-info-container {
+    flex: 1;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+/* Botón para mostrar/ocultar el carrito */
+.carrito-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.carrito-toggle-btn:hover {
+    background-color: #45a049;
+}
+
+/* Contenedor del carrito en una pestaña lateral */
+.carrito-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px; /* Aumenté el tamaño a 400px para pantallas grandes */
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+
+/* Títulos del carrito */
+.carrito-container h3 {
+    margin-top: 0;
+    font-size: 1.75rem; /* Tamaño de fuente mayor para pantallas grandes */
+}
+
+/* Tabla del carrito */
+.carrito-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.carrito-container th,
+.carrito-container td {
+    padding: 15px; /* Aumenté el padding para mejorar la legibilidad */
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 1.1rem; /* Aumenté el tamaño de la fuente */
+}
+
+.carrito-container th {
+    background-color: #f4f4f4;
+}
+
+/* Botones de eliminar en la tabla */
+.carrito-container td button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem; /* Aumenté el tamaño de fuente para mejor accesibilidad */
+}
+
+.carrito-container td button:hover {
+    background-color: #e53935;
+}
+
+/* Botón de continuar */
+.continuar-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1rem; /* Aumenté el tamaño de la fuente para pantallas grandes */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.continuar-btn:hover {
+    background-color: #45a049;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .boutique-container {
+        flex-direction: column;
+    }
+
+    .formulario-container {
+        max-width: 100%;
+        margin-right: 0;
+    }
+
+    .producto-info-container {
+        max-width: 100%;
+    }
+
+    .carrito-container {
+        width: 100%;
+        bottom: 0;
+        right: 0;
+        height: auto;
+        position: relative;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Ajustes para pantallas grandes */
+    .carrito-container {
+        width: 500px; /* Aumento del tamaño del carrito para pantallas grandes */
+        padding: 30px; /* Más padding para que el carrito se vea más espacioso */
+    }
+
+    .carrito-container h3 {
+        font-size: 2rem; /* Títulos más grandes */
+    }
+
+    .carrito-container td button {
+        padding: 10px 20px; /* Botones más grandes para pantallas grandes */
+    }
+
+    .continuar-btn {
+        padding: 15px 30px; /* Botón de continuar más grande */
+    }
+}
