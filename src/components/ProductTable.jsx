@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import "../styles/ProductTable.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Modal = ({ isOpen, onClose, children }) => {
@@ -17,7 +16,11 @@ const Modal = ({ isOpen, onClose, children }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Editar Producto</h5>
-            <button type="button" className="btn-close" onClick={onClose}></button>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={onClose}
+            ></button>
           </div>
           <div className="modal-body">{children}</div>
         </div>
@@ -52,17 +55,8 @@ const ProductTable = () => {
         throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
       const data = await response.json();
-      console.log("Productos obtenidos:", data);
-
-      // Renombramos '_id' a 'codigo_ean' en los productos recibidos
-      const productosConCodigoEAN = data.map(producto => ({
-        ...producto,
-        codigo_ean: producto.codigo_ean,  // Usamos 'codigo_ean' en vez de '_id'
-        // Puedes eliminar '_id' si no lo necesitas en el frontend
-      }));
-
-      setProducts(productosConCodigoEAN);
-      setFilteredProducts(productosConCodigoEAN);
+      setProducts(data);
+      setFilteredProducts(data);
     } catch (error) {
       console.error("Error al cargar los productos:", error);
     }
@@ -94,8 +88,6 @@ const ProductTable = () => {
       );
     });
 
-    console.log("Productos filtrados:", filtered); // Verifica los productos filtrados
-
     setFilteredProducts(filtered);
   }, [filters, products]);
 
@@ -124,9 +116,19 @@ const ProductTable = () => {
 
   const handleUpdateProduct = async (e) => {
     e.preventDefault();
+
+    // Verificar si el código EAN existe y los datos son válidos
+    if (!editingProduct || !editingProduct.codigo_ean) {
+      console.error("Falta el código EAN del producto.");
+      return;
+    }
+
+    console.log("Datos enviados:", updatedProduct);
+    console.log("URL:", `${apiUrl}/api/productos/${editingProduct.codigo_ean}`);
+
     try {
       const response = await fetch(
-        `${apiUrl}/api/productos/${editingProduct.codigo_ean}`, // Usamos 'codigo_ean' en vez de '_id'
+        `${apiUrl}/api/productos/${editingProduct.codigo_ean}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -136,6 +138,9 @@ const ProductTable = () => {
       if (response.ok) {
         fetchProducts();
         setEditingProduct(null);
+      } else {
+        const errorData = await response.json();
+        console.error("Error del servidor:", errorData);
       }
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
@@ -143,7 +148,6 @@ const ProductTable = () => {
   };
 
   const handleFilterChange = (key, value) => {
-    console.log(`Filtro cambiado: ${key} = ${value}`); // Verifica los filtros
     setFilters((prevFilters) => ({
       ...prevFilters,
       [key]: value,
@@ -222,8 +226,16 @@ const ProductTable = () => {
                     </select>
                   </td>
                   <td>
-                    <button onClick={() => handleEdit(product)}>Editar</button>
-                    <button onClick={() => handleDelete(product.codigo_ean)}>
+                    <button
+                      className="btn btn-primary me-2"
+                      onClick={() => handleEdit(product)}
+                    >
+                      Editar
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDelete(product.codigo_ean)}
+                    >
                       Eliminar
                     </button>
                   </td>
@@ -239,6 +251,64 @@ const ProductTable = () => {
           </tbody>
         </table>
       </div>
+
+      <Modal isOpen={!!editingProduct} onClose={() => setEditingProduct(null)}>
+        <form onSubmit={handleUpdateProduct}>
+          <div className="mb-3">
+            <label htmlFor="nombre">Nombre</label>
+            <input
+              type="text"
+              id="nombre"
+              value={updatedProduct.nombre}
+              onChange={(e) =>
+                setUpdatedProduct({ ...updatedProduct, nombre: e.target.value })
+              }
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="categoria">Categoría</label>
+            <input
+              type="text"
+              id="categoria"
+              value={updatedProduct.categoria}
+              onChange={(e) =>
+                setUpdatedProduct({ ...updatedProduct, categoria: e.target.value })
+              }
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="stock">Stock</label>
+            <input
+              type="number"
+              id="stock"
+              value={updatedProduct.stock}
+              onChange={(e) =>
+                setUpdatedProduct({ ...updatedProduct, stock: Number(e.target.value) })
+              }
+              className="form-control"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="estado">Estado</label>
+            <select
+              id="estado"
+              value={updatedProduct.estado}
+              onChange={(e) =>
+                setUpdatedProduct({ ...updatedProduct, estado: e.target.value })
+              }
+              className="form-select"
+            >
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Guardar Cambios
+          </button>
+        </form>
+      </Modal>
     </div>
   );
 };
