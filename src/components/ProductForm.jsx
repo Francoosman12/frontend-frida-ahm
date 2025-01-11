@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import "../styles/ProductForm.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import QRCode from "qrcode";
+
 
 const ProductForm = ({ onAddProduct }) => {
   const [formData, setFormData] = useState({
@@ -15,38 +16,214 @@ const ProductForm = ({ onAddProduct }) => {
     unidad_medida: "",
     precio_compra: 0,
     precio_venta: 0,
-    fecha_ingreso: new Date().toISOString().split("T")[0],
-    fecha_ultima_actualizacion: new Date().toISOString().split("T")[0],
+    fecha_ingreso: new Date().toISOString().split("T")[0], // Fecha actual
+    fecha_ultima_actualizacion: new Date().toISOString().split("T")[0], // Fecha actual
     observaciones: "",
-    estado: "activo",
-    imagen_producto: null,
-    qr_code: ""
+    estado: "activo", // Valor por defecto
+    imagen_producto: null, // Almacenar archivo de imagen
+    qr_code: "", // Aquí ya está bien inicializado
   });
 
   const [categorias, setCategorias] = useState([]);
   const [subcategorias, setSubcategorias] = useState([]);
-  const [rubrosData, setRubrosData] = useState({});
-  const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL; 
+  // Datos de las categorías y subcategorías
+  const rubrosData = {
+    hotel: {
+      categorias: [
+        { value: "mantenimiento_reparaciones", label: "Mantenimiento y Reparaciones" },
+        { value: "limpieza_higiene", label: "Limpieza e Higiene" },
+        { value: "habitaciones", label: "Habitaciones" },
+        { value: "cocina_alimentos", label: "Cocina y Alimentos" },
+        { value: "areas_comunes", label: "Áreas Comunes" },
+        { value: "oficina_administracion", label: "Oficina y Administración" },
+        { value: "seguridad_emergencias", label: "Seguridad y Emergencias" },
+        { value: "areas_recreacion", label: "Áreas de Recreación" },
+        { value: "tecnologia_comunicacion", label: "Tecnología y Comunicación" },
+        { value: "otros", label: "Otros" },
+      ],
+      subcategorias: {
+        mantenimiento_reparaciones: [
+          { value: "electricidad", label: "Electricidad: Focos, interruptores, cables, enchufes" },
+          { value: "plomeria", label: "Plomería: Llaves de agua, mangueras, tubos PVC, silicón" },
+          { value: "herramientas", label: "Herramientas: Martillos, destornilladores, taladros, llaves inglesas" },
+          { value: "pintura_acabados", label: "Pintura y Acabados: Pinturas, brochas, rodillos, selladores" },
+        ],
+        limpieza_higiene: [
+          { value: "productos_limpieza", label: "Productos de Limpieza: Jabones, desinfectantes, detergentes, cloro" },
+          { value: "accesorios_limpieza", label: "Accesorios de Limpieza: Trapeadores, escobas, mopas, cubetas" },
+          { value: "suministros_higiene", label: "Suministros de Higiene: Papel higiénico, toallas de mano, dispensadores de jabón" },
+          { value: "equipo_limpieza", label: "Equipo de Limpieza: Aspiradoras, máquinas de vapor, hidrolavadoras" },
+        ],
+        habitaciones: [
+          { value: "ropa_cama", label: "Ropa de Cama: Sábanas, fundas, cobertores, almohadas" },
+          { value: "decoracion", label: "Decoración: Cortinas, cuadros, alfombras, lámparas" },
+          { value: "electrodomesticos", label: "Electrodomésticos: Minibares, secadoras de cabello, planchas" },
+          { value: "complementos_hospedaje", label: "Complementos de Hospedaje: Pantuflas, kits de aseo, bolsas de lavandería" },
+        ],
+        cocina_alimentos: [
+          { value: "utensilios_cocina", label: "Utensilios de Cocina: Sartenes, cuchillos, tablas de cortar, cucharones" },
+          { value: "electrodomesticos", label: "Electrodomésticos: Refrigeradores, hornos, microondas, licuadoras" },
+          { value: "menaje", label: "Menaje: Platos, vasos, cubiertos, tazas" },
+          { value: "consumibles", label: "Consumibles: Bolsas de basura, servilletas, papel aluminio, bolsas plásticas" },
+        ],
+        areas_comunes: [
+          { value: "mobiliario", label: "Mobiliario: Sillas, mesas, sillones, sombrillas" },
+          { value: "decoracion", label: "Decoración: Plantas, macetas, cuadros, centros de mesa" },
+          { value: "equipos_electronicos", label: "Equipos Electrónicos: Televisores, proyectores, equipos de sonido" },
+          { value: "seguridad", label: "Seguridad: Cámaras, detectores de humo, extintores, señalética" },
+        ],
+        oficina_administracion: [
+          { value: "papeleria", label: "Papelería: Hojas, bolígrafos, carpetas, libretas" },
+          { value: "tecnologia", label: "Tecnología: Computadoras, impresoras, routers" },
+          { value: "consumibles_oficina", label: "Consumibles de Oficina: Cartuchos de tinta, sobres, etiquetas" },
+          { value: "mobiliario_oficina", label: "Mobiliario de Oficina: Escritorios, sillas, archiveros" },
+        ],
+        seguridad_emergencias: [
+          { value: "equipo_seguridad", label: "Equipo de Seguridad: Botiquines, chalecos reflectantes, linternas" },
+          { value: "emergencias", label: "Emergencias: Alarmas, baterías, generadores eléctricos" },
+          { value: "senalizacion", label: "Señalización: Letreros de salida, cintas de precaución, conos" },
+        ],
+        areas_recreacion: [
+          { value: "piscinas_jardines", label: "Piscinas y Jardines" },
+          { value: "gimnasio", label: "Gimnasio" },
+          { value: "zona_infantil", label: "Zona Infantil" },
+        ],
+        tecnologia_comunicacion: [
+          { value: "equipos_red", label: "Equipos de Red: Módems, routers, switches, cables Ethernet" },
+          { value: "dispositivos_electronicos", label: "Dispositivos Electrónicos: Tablets, controles remotos, teléfonos" },
+          { value: "accesorios", label: "Accesorios: Baterías, cargadores, adaptadores" },
+        ],
+        otros: [
+          { value: "proyectos_especiales", label: "Proyectos Especiales: Material para renovaciones o remodelaciones" },
+          { value: "suministros_generales", label: "Suministros Generales: Pilas, etiquetas, empaques" },
+          { value: "almacen_temporal", label: "Almacén Temporal: Inventario de temporada, regalos promocionales" },
+        ],
+      },
+    },
+    
+    boutique: {
+      categorias: [
+        { value: "ropa", label: "Ropa" },
+        { value: "accesorios", label: "Accesorios" },
+        { value: "calzado", label: "Calzado" },
+        { value: "bolsos", label: "Bolsos" },
+        { value: "joyeria", label: "Joyería" },
+        { value: "perfumes", label: "Perfumes" },
+        { value: "articulos_viaje", label: "Artículos de Viaje" },
+        { value: "tecnologia", label: "Tecnología" },
+        { value: "productos_exclusivos", label: "Productos Exclusivos" },
+      ],
+      subcategorias: {
+        ropa: [
+          { value: "camisetas", label: "Camisetas" },
+          { value: "pantalones", label: "Pantalones" },
+          { value: "blusas", label: "Blusas" },
+          { value: "chaquetas", label: "Chaquetas" },
+          { value: "shorts", label: "Shorts" },
+        ],
+        accesorios: [
+          { value: "gafas", label: "Gafas" },
+          { value: "relojes", label: "Relojes" },
+          { value: "cinturones", label: "Cinturones" },
+          { value: "bufandas", label: "Bufandas" },
+        ],
+        calzado: [
+          { value: "zapatos_formales", label: "Zapatos Formales" },
+          { value: "zapatos_deportivos", label: "Zapatos Deportivos" },
+          { value: "sandalias", label: "Sandalias" },
+          { value: "botas", label: "Botas" },
+        ],
+        bolsos: [
+          { value: "bolsos_handbag", label: "Bolsos Handbag" },
+          { value: "mochilas", label: "Mochilas" },
+          { value: "carteras", label: "Carteras" },
+          { value: "billeteras", label: "Billeteras" },
+        ],
+        joyeria: [
+          { value: "collares", label: "Collares" },
+          { value: "pulseras", label: "Pulseras" },
+          { value: "anillos", label: "Anillos" },
+          { value: "aretes", label: "Aretes" },
+        ],
+        perfumes: [
+          { value: "perfumes_mujer", label: "Perfumes para Mujer" },
+          { value: "perfumes_hombre", label: "Perfumes para Hombre" },
+        ],
+        articulos_viaje: [
+          { value: "maletas", label: "Maletas" },
+          { value: "mochilas_viaje", label: "Mochilas de Viaje" },
+          { value: "etiquetas_viaje", label: "Etiquetas de Viaje" },
+        ],
+        tecnologia: [
+          { value: "auriculares", label: "Auriculares" },
+          { value: "altavoces_bluetooth", label: "Altavoces Bluetooth" },
+          { value: "smartwatches", label: "Smartwatches" },
+        ],
+        productos_exclusivos: [
+          { value: "ediciones_limitadas", label: "Ediciones Limitadas" },
+          { value: "colecciones_especiales", label: "Colecciones Especiales" },
+        ],
+        artesanias: [
+          { "value": "imanes", "label": "Imanes" },
+          { "value": "alebrijes", "label": "Alebrijes" },
+          { "value": "tazas", "label": "Tazas" },
+          { "value": "shots", "label": "Shots" },
+          { "value": "calaveras", "label": "Calaveras" },
+          { "value": "lapiceras", "label": "Lapiceras" },
+          { "value": "portaretratos", "label": "Portarretratos" },
+          { "value": "cabezas_decoradas", "label": "Cabezas Decoradas" },
+          { "value": "pulseras", "label": "Pulseras" },
+          { "value": "adornos", "label": "Adornos" }
+        ],
+      },
+    },
+    
+    cafeteria: {
+      categorias: [
+        { value: "bebidas", label: "Bebidas" },
+        { value: "alimentos", label: "Alimentos" },
+      ],
+      subcategorias: {
+        bebidas: [
+          { value: "cafes", label: "Cafés" },
+          { value: "jugos", label: "Jugos" },
+        ],
+        alimentos: [
+          { value: "sandwiches", label: "Sándwiches" },
+          { value: "pasteles", label: "Pasteles" },
+        ],
+      },
+    },
+    rentas: {
+      categorias: [
+        { value: "bicicleta", label: "Bicicleta" },
+        { value: "moto", label: "Moto" },
+        { value: "cuatriciclo", label: "Cuatriciclo" },
+      ],
+      subcategorias: {
+        bicicleta: [
+          { value: "urbana", label: "Urbana" },
+          { value: "montaña", label: "Montaña" },
+        ],
+        moto: [
+          { value: "deportiva", label: "Deportiva" },
+          { value: "chopper", label: "Chopper" },
+        ],
+        cuatriciclo: [
+          { value: "cuatriciclo_rural", label: "Rural" },
+          { value: "cuatriciclo_playa", label: "Playa" },
+        ],
+      },
+    },
+  };
 
-  // Cargar datos de rubros desde el JSON
-  useEffect(() => {
-    fetch("/rubros.json")
-      .then((response) => response.json())
-      .then((data) => setRubrosData(data))
-      .catch((error) => console.error("Error al cargar rubros:", error));
-  }, []);
-
-  useEffect(() => {
-    const rubro = rubrosData[formData.rubro];
-    setCategorias(rubro ? rubro.categorias : []);
-    setSubcategorias(rubro && rubro.subcategorias[formData.categoria] ? rubro.subcategorias[formData.categoria] : []);
-  }, [formData.rubro, formData.categoria, rubrosData]);
-
+  // Manejar cambios en los campos de texto/select
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
