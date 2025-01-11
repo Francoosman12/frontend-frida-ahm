@@ -1,0 +1,104 @@
+{
+    "hotel": {
+      "categorias": [
+        { "value": "mantenimiento_reparaciones", "label": "Mantenimiento y Reparaciones" },
+        { "value": "limpieza_higiene", "label": "Limpieza e Higiene" },
+        { "value": "habitaciones", "label": "Habitaciones" },
+        { "value": "cocina_alimentos", "label": "Cocina y Alimentos" },
+        { "value": "areas_comunes", "label": "Áreas Comunes" },
+        { "value": "oficina_administracion", "label": "Oficina y Administración" },
+        { "value": "seguridad_emergencias", "label": "Seguridad y Emergencias" },
+        { "value": "areas_recreacion", "label": "Áreas de Recreación" },
+        { "value": "tecnologia_comunicacion", "label": "Tecnología y Comunicación" },
+        { "value": "otros", "label": "Otros" }
+      ],
+      "subcategorias": {
+        "mantenimiento_reparaciones": [
+          { "value": "electricidad", "label": "Electricidad: Focos, interruptores, cables, enchufes" },
+          { "value": "plomeria", "label": "Plomería: Llaves de agua, mangueras, tubos PVC, silicón" },
+          { "value": "herramientas", "label": "Herramientas: Martillos, destornilladores, taladros, llaves inglesas" },
+          { "value": "pintura_acabados", "label": "Pintura y Acabados: Pinturas, brochas, rodillos, selladores" }
+        ],
+        "limpieza_higiene": [
+          { "value": "productos_limpieza", "label": "Productos de Limpieza: Jabones, desinfectantes, detergentes, cloro" },
+          { "value": "accesorios_limpieza", "label": "Accesorios de Limpieza: Trapeadores, escobas, mopas, cubetas" },
+          { "value": "suministros_higiene", "label": "Suministros de Higiene: Papel higiénico, toallas de mano, dispensadores de jabón" },
+          { "value": "equipo_limpieza", "label": "Equipo de Limpieza: Aspiradoras, máquinas de vapor, hidrolavadoras" }
+        ]
+      }
+    },
+    "boutique": {
+      "categorias": [
+        { "value": "ropa", "label": "Ropa" },
+        { "value": "accesorios", "label": "Accesorios" },
+        { "value": "artesanias", "label": "Artesanías" }
+      ],
+      "subcategorias": {
+        "ropa": [
+          { "value": "camisetas", "label": "Camisetas" },
+          { "value": "pantalones", "label": "Pantalones" },
+          { "value": "vestidos", "label": "Vestidos" },
+          { "value": "chaquetas", "label": "Chaquetas" }
+        ],
+        "accesorios": [
+          { "value": "bolsos", "label": "Bolsos" },
+          { "value": "joyeria", "label": "Joyería" },
+          { "value": "cinturones", "label": "Cinturones" },
+          { "value": "sombreros", "label": "Sombreros" }
+        ],
+        "artesanias": [
+          { "value": "imanes", "label": "Imanes" },
+          { "value": "alebrijes", "label": "Alebrijes" },
+          { "value": "tazas", "label": "Tazas" },
+          { "value": "shots", "label": "Shots" },
+          { "value": "calaveras", "label": "Calaveras" },
+          { "value": "lapiceras", "label": "Lapiceras" },
+          { "value": "portaretratos", "label": "Portarretratos" },
+          { "value": "cabezas_decoradas", "label": "Cabezas Decoradas" },
+          { "value": "pulseras", "label": "Pulseras" },
+          { "value": "adornos", "label": "Adornos" }
+        ]
+      }
+    },
+    "cafeteria": {
+      "categorias": [
+        { "value": "bebidas", "label": "Bebidas" },
+        { "value": "alimentos", "label": "Alimentos" },
+        { "value": "consumibles", "label": "Consumibles" },
+        { "value": "utensilios", "label": "Utensilios" }
+      ],
+      "subcategorias": {
+        "bebidas": [
+          { "value": "cafes", "label": "Cafés" },
+          { "value": "tes", "label": "Tés" },
+          { "value": "jugos", "label": "Jugos" },
+          { "value": "refrescos", "label": "Refrescos" }
+        ],
+        "alimentos": [
+          { "value": "panes", "label": "Panes" },
+          { "value": "pasteles", "label": "Pasteles" },
+          { "value": "bocadillos", "label": "Bocadillos" }
+        ]
+      }
+    },
+    "rentas": {
+      "categorias": [
+        { "value": "vehiculos", "label": "Vehículos" },
+        { "value": "accesorios", "label": "Accesorios" },
+        { "value": "mantenimiento", "label": "Mantenimiento" }
+      ],
+      "subcategorias": {
+        "vehiculos": [
+          { "value": "motos", "label": "Motos" },
+          { "value": "bicicletas", "label": "Bicicletas" },
+          { "value": "cuatriciclos", "label": "Cuatriciclos" }
+        ],
+        "accesorios": [
+          { "value": "cascos", "label": "Cascos" },
+          { "value": "luces", "label": "Luces" },
+          { "value": "canastillas", "label": "Canastillas" }
+        ]
+      }
+    }
+  }
+  
